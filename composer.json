@@ -1,8 +1,0 @@
-{
-  "name": "onemore/comment-manager",
-  "description": "Comment manager tool",
-  "require": {
-    "php": "^7.4",
-    "guzzlehttp/guzzle": "~6.0"
-  }
-}
