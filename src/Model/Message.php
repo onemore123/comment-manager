@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Model;
+namespace Model;
 
 /**
  * Class Message
@@ -16,11 +16,36 @@ class Message
     private string $text;
 
     /**
+     * Message static crate method
+     *
+     * @param string $name
+     * @param string $text
+     * @return self
+     */
+    public static function create(string $name, string $text): self
+    {
+        $message = new static();
+
+        $message->name = $name;
+        $message->text = $text;
+
+        return $message;
+    }
+
+    /**
      * @return int
      */
     public function getId(): int
     {
         return $this->id;
+    }
+
+    /**
+     * @param int $id
+     */
+    public function setId(int $id): void
+    {
+        $this->id = $id;
     }
 
     /**

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Model;
+namespace Model;
 
 use GuzzleHttp\Client as GuzzleClient;
 
@@ -10,24 +10,20 @@ use GuzzleHttp\Client as GuzzleClient;
  */
 final class Client extends GuzzleClient
 {
-    /**
-     * Client constructor.
-     * @param array $config
-     */
-    private function __construct(array $config = [])
-    {
-        parent::__construct($config);
-    }
+    /** @var string base URL for the client */
+    public const BASE_URL = 'http://example.com';
 
     /**
-     * @return static
+     * Client constructor.
+     * @param string|null $url
      */
-    public static function create(): self
+    public function __construct(string $url = null)
     {
-        return new Client(
+        $baseUrl = ($url === null) ? 'http://example.com' : $url;
+        parent::__construct(
             [
                 // Base URI is used with relative requests
-                'base_uri' => 'http://example.com',
+                'base_uri' => $baseUrl,
                 // You can set any number of default request options.
                 'timeout' => 2.0,
             ]
