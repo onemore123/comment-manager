@@ -1,2 +1,3 @@
-/src/webBuild/
-/src/docker-compose.yaml
+/webBuild/
+/docker-compose.yaml
+/composer.lock
