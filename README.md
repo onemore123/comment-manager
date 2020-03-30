@@ -1,7 +1,7 @@
 # Comment-manager
-##### Guzzle client wrapper to add, update and get comments list
+### Guzzle client wrapper to add, update and get comments list
 
-#### Sender class
+### Sender class
 
 **Create new Sender object**
 
