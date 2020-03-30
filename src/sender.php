@@ -36,7 +36,7 @@ final class Sender
      * @param string $comment
      * @return array
      */
-    public function postComment(string $author, string $comment): array
+    public function createComment(string $author, string $comment): array
     {
         // Send new comment
         $response = $this->client->request('POST','/comment', [
