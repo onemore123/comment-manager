@@ -23,18 +23,34 @@ final class Sender
 
     /**
      * sender constructor.
+     * @param string|null $host
      */
-    public function __construct()
+    public function __construct(string $host = null)
     {
-        $this->client = new Client();
+        $this->client = (bool)$host ? new Client($host) : new Client();
     }
 
     /**
-     * @return string
+     * @param string $author
+     * @param string $comment
+     * @return array
      */
-    public function sendComment(): string
+    public function sendComment(string $author, string $comment): array
     {
-        $response = $this->client->get('http://www.ya.ru');
-        return $response->getBody();
+        // Send new comment
+        $response = $this->client->request('POST','/comment', [
+            'json' => [
+                'name' => $author,
+                'text' => $comment,
+            ]
+        ]);
+
+        // Check status code
+        if ($response->getStatusCode() !== 200) {
+            throw new RuntimeException($response->getStatusCode(), $response->getReasonPhrase());
+        }
+
+        // Get response body as array
+        $responseBody = json_decode($response->getBody(), true);
     }
 }
